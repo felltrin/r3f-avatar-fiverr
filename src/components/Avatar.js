@@ -9,22 +9,40 @@ import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 
 export function Avatar(props) {
+  const { animation } = props;
   const group = useRef();
   const { scene } = useGLTF("models/67aad1a184f3b88e8f127e7d.glb");
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
 
+  // Load in animations
   const { animations: typingAnimation } = useFBX("animations/Typing.fbx");
-  typingAnimation[0].name = "Typing";
+  const { animations: standingAnimation } = useFBX(
+    "animations/Standing Idle.fbx"
+  );
+  const { animations: fallingAnimation } = useFBX(
+    "animations/Falling Idle.fbx"
+  );
 
-  const { actions } = useAnimations(typingAnimation, group);
+  // Renaming animation objects
+  typingAnimation[0].name = "Typing";
+  standingAnimation[0].name = "Standing";
+  fallingAnimation[0].name = "Falling";
+
+  const { actions } = useAnimations(
+    [typingAnimation[0], standingAnimation[0], fallingAnimation[0]],
+    group
+  );
 
   useEffect(() => {
-    if (actions["Typing"]) {
-      actions["Typing"].reset().play();
+    if (actions[animation]) {
+      actions[animation].reset().fadeIn(0.5).play();
+      return () => {
+        actions[animation].reset().fadeOut(0.5);
+      };
     }
     // actions["Typing"].reset().play();
-  });
+  }, [animation]);
 
   return (
     <group {...props} ref={group} dispose={null}>
