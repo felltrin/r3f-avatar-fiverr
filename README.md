@@ -6,6 +6,6 @@ This is a template to get started with React Three Fiber projects
 
 - [x] Load Avatar
 - [x] Load a animation
-- [ ] Retarget animations to avatar
-- [ ] Load the rest of the animations
-- [ ] Add animation selection menu
+- [x] Retarget animations to avatar
+- [x] Load the rest of the animations
+- [x] Add animation selection menu
