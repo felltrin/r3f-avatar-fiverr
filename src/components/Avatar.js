@@ -24,13 +24,21 @@ export function Avatar(props) {
     "animations/Falling Idle.fbx"
   );
   const { animations: aslAnimation } = useFBX("animations/ASL-tutorial.fbx");
+  const { animations: aslOneAnimation } = useFBX(
+    "animations/asl-number-one.fbx"
+  );
 
   // Renaming animation objects
   typingAnimation[0].name = "Typing";
   standingAnimation[0].name = "Standing";
   fallingAnimation[0].name = "Falling";
-  // WORKING!!!
+
+  /**
+   * These are the renameing for the ASL animations
+   * that now work
+   */
   aslAnimation[18].name = "ASL-First";
+  aslOneAnimation[1].name = "ASL One";
 
   const { actions } = useAnimations(
     [
@@ -38,6 +46,7 @@ export function Avatar(props) {
       standingAnimation[0],
       fallingAnimation[0],
       aslAnimation[18],
+      aslOneAnimation[1],
     ],
     group
   );
