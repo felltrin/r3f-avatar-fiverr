@@ -27,6 +27,11 @@ export function Avatar(props) {
   const { animations: aslOneAnimation } = useFBX(
     "animations/asl-number-one.fbx"
   );
+  const { animations: aslTenAnimation } = useFBX(
+    "animations/ASL Number 10.fbx"
+  );
+
+  console.log(aslTenAnimation);
 
   // Renaming animation objects
   typingAnimation[0].name = "Typing";
@@ -39,6 +44,7 @@ export function Avatar(props) {
    */
   aslAnimation[18].name = "ASL-First";
   aslOneAnimation[1].name = "ASL One";
+  aslTenAnimation[1].name = "ASL Ten";
 
   const { actions } = useAnimations(
     [
@@ -47,6 +53,7 @@ export function Avatar(props) {
       fallingAnimation[0],
       aslAnimation[18],
       aslOneAnimation[1],
+      aslTenAnimation[1],
     ],
     group
   );
