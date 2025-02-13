@@ -23,14 +23,22 @@ export function Avatar(props) {
   const { animations: fallingAnimation } = useFBX(
     "animations/Falling Idle.fbx"
   );
+  const { animations: aslAnimation } = useFBX("animations/ASL-tutorial.fbx");
 
   // Renaming animation objects
   typingAnimation[0].name = "Typing";
   standingAnimation[0].name = "Standing";
   fallingAnimation[0].name = "Falling";
+  // WORKING!!!
+  aslAnimation[18].name = "ASL-First";
 
   const { actions } = useAnimations(
-    [typingAnimation[0], standingAnimation[0], fallingAnimation[0]],
+    [
+      typingAnimation[0],
+      standingAnimation[0],
+      fallingAnimation[0],
+      aslAnimation[18],
+    ],
     group
   );
 
@@ -41,7 +49,6 @@ export function Avatar(props) {
         actions[animation].reset().fadeOut(0.5);
       };
     }
-    // actions["Typing"].reset().play();
   }, [animation]);
 
   return (
