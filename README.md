@@ -1,6 +1,6 @@
-# React Three Fiber Template
+# React Three Fiber Ready Avatar Me
 
-This is a template to get started with React Three Fiber projects
+An avatar with ASL animations retargeted onto it
 
 ## TODO
 
